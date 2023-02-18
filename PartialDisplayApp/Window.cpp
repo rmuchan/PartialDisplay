@@ -150,17 +150,17 @@ LRESULT CALLBACK Window::WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPAR
 
 bool Window::CreateMyTray(HWND hWnd, bool create)
 {
-    NOTIFYICONDATA m_Nid = {};
+    NOTIFYICONDATA nid = {};
     
-    m_Nid.cbSize = sizeof(NOTIFYICONDATA);
-    m_Nid.hWnd = hWnd;
-    m_Nid.uID = 0;
-    m_Nid.uFlags = NIF_MESSAGE | NIF_ICON | NIF_TIP;
-    m_Nid.uCallbackMessage = WM_USER;
-    m_Nid.hIcon = LoadIcon(NULL, IDI_APPLICATION);
-    wcscpy_s(m_Nid.szTip, L"Partial Display");
+    nid.cbSize = sizeof(NOTIFYICONDATA);
+    nid.hWnd = hWnd;
+    nid.uID = 0;
+    nid.uFlags = NIF_MESSAGE | NIF_ICON | NIF_TIP;
+    nid.uCallbackMessage = WM_USER;
+    nid.hIcon = LoadIcon(NULL, IDI_APPLICATION);
+    wcscpy_s(nid.szTip, L"Partial Display");
     
-    return Shell_NotifyIcon(create ? NIM_ADD : NIM_DELETE, &m_Nid);
+    return Shell_NotifyIcon(create ? NIM_ADD : NIM_DELETE, &nid);
 }
 
 bool Window::HandleTrayMessage(WPARAM wParam, LPARAM lParam)
